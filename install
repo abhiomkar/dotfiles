@@ -24,17 +24,19 @@ grep -q -F "source ~/.dotfiles/zsh/zshrc" ~/.zshrc || echo "source ~/.dotfiles/z
 
 # OSX - Set Defaults
 echo "\033[0;34mSetting OSX Defaults...\033[0m"
-~/.dotfiles/set-defaults.sh
+~/.dotfiles/osx/set-defaults.sh
 
 # Python packages
 echo "\033[0;34mInstalling python packages...\033[0m"
 sudo ~/.dotfiles/python/install.sh
 
 # Vim
+echo "\033[0;34mAdding vim config...\033[0m"
 mv ~/.vimrc ~/.vimrc.backup && rm -f ~/.vimrc && ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 
 # .gitignore
-ln -s ~/.dotfiles/git/gitignore ~/.gitignore && success('Added gitignore')
+echo "\033[0;34mAdding gitignore...\033[0m"
+ln -s ~/.dotfiles/git/gitignore ~/.gitignore
 
 # Homebrew - The missing package manager for OS X
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -42,3 +44,5 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # Install essential packages using Homebrew
 echo "\033[0;34mInstalling essential homebrew packages...\033[0m"
 brew install grc coreutils spark ffmpeg ack imagemagick ngrep wget youtube-dl
+
+echo '>>> Done.'
