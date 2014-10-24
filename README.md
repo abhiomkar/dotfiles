@@ -4,7 +4,7 @@ Your dotfiles are how you personalize your system. These are mine.
 
 ## install
 
-  curl -L https://raw.githubusercontent.com/abhiomkar/dotfiles/master/install | sh
+    curl -L https://raw.githubusercontent.com/abhiomkar/dotfiles/master/install | sh
 
 ## what's inside
 
