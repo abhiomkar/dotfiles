@@ -18,13 +18,6 @@ hash git >/dev/null 2>&1 && env git clone https://github.com/abhiomkar/dotfiles.
 # Oh My ZSH! - http://ohmyz.sh/
 curl -L http://install.ohmyz.sh | sh
 
-# Homebrew - The missing package manager for OS X
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-# Install essential packages using Homebrew
-echo "\033[0;34mInstalling essential homebrew packages...\033[0m"
-brew install grc coreutils spark ffmpeg ack imagemagick ngrep wget youtube-dl
-
 # source ~/.dotfiles/zsh/zshrc in ~/.zshrc (if not already exists)
 echo "\033[0;34mIncluding zshrc config of Dotfiles...\033[0m"
 grep -q -F "source ~/.dotfiles/zsh/zshrc" ~/.zshrc || echo "source ~/.dotfiles/zsh/zshrc" >> ~/.zshrc
@@ -42,3 +35,10 @@ mv ~/.vimrc ~/.vimrc.backup && rm -f ~/.vimrc && ln -s ~/.dotfiles/vim/vimrc ~/.
 
 # .gitignore
 ln -s ~/.dotfiles/git/gitignore ~/.gitignore && success('Added gitignore')
+
+# Homebrew - The missing package manager for OS X
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install essential packages using Homebrew
+echo "\033[0;34mInstalling essential homebrew packages...\033[0m"
+brew install grc coreutils spark ffmpeg ack imagemagick ngrep wget youtube-dl
