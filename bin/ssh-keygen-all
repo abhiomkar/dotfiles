@@ -1,0 +1,49 @@
+#!/bin/bash
+# Akamai New Key Deployment
+
+echo "NOTE: Please make sure that your old keys are added to key agent for verification process."
+echo ""
+
+mkdir -p ~/.ssh/external/
+mkdir -p ~/.ssh/internal/
+mkdir -p ~/.ssh/deployed/
+
+today=`date +%Y%m%d`
+
+ssh-keygen -N '' -t rsa -b 2048 -C "`whoami`-external-$today" -f ~/.ssh/external/$today
+ssh-keygen -N '' -t rsa -b 2048 -C "`whoami`-internal-$today" -f ~/.ssh/internal/$today
+ssh-keygen -N '' -t rsa -b 2048 -C "`whoami`-deployed-$today" -f ~/.ssh/deployed/$today
+
+
+echo ""
+echo "Please upload following 3 public keys to contqcts.akamai.com"
+echo "~/.ssh/external/$today.pub"
+echo "~/.ssh/internal/$today.pub"
+echo "~/.ssh/deployed/$today.pub"
+
+echo ""
+echo "Press ENTER when done..."
+read
+
+echo "Finger Prints: "
+
+echo "External"
+ssh-keygen -l -f ~/.ssh/external/$today.pub | awk '{print $2}'
+
+echo "Internal"
+ssh-keygen -l -f ~/.ssh/internal/$today.pub | awk '{print $2}'
+
+echo "Deployed"
+ssh-keygen -l -f ~/.ssh/deployed/$today.pub | awk '{print $2}'
+
+echo "Verifying keys. Please wait..."
+
+ssh kvexternal@ssh-keyrotation.akamai.com && \
+ssh kvinternal@ssh-keyrotation.akamai.com && \
+ssh kvdeployed@ssh-keyrotation.akamai.com && \
+echo "Verification complete." && \
+echo "Done." && exit
+
+echo "Error while verifying keys. Try again.."
+echo ""
+echo "Please make sure that your old keys are added to key agent for verification process."
