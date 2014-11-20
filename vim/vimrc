@@ -191,7 +191,7 @@ set softtabstop=4
 set expandtab
 set wrap
 set textwidth=80
-set formatoptions=qrn1j
+" set formatoptions=qrn1j
 set colorcolumn=+1
 
 " }}}
@@ -2497,3 +2497,6 @@ endif
 imap jj <Esc>
 
 " }}}
+"
+set nofoldenable
+
