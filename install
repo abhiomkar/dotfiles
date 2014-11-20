@@ -36,7 +36,7 @@ mv ~/.vimrc ~/.vimrc.backup && rm -f ~/.vimrc && ln -s ~/.dotfiles/vim/vimrc ~/.
 
 # .gitignore
 echo "\033[0;34mAdding gitignore...\033[0m"
-ln -s ~/.dotfiles/git/gitignore ~/.gitignore
+ln -sf ~/.dotfiles/git/gitignore ~/.gitignore
 
 # Homebrew - The missing package manager for OS X
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
